@@ -23,8 +23,8 @@ dtype: object"""
 # ================================================================
 # 1. 改变数值
 # ================================================================
-# s.loc[1] = [[123,234],[456,654]]
-# print(s)
+s.loc[1] = [[123,234],[456,654]]
+print(s)
 """
 0            [[1, 2], [2, 3]]
 1    [[123, 234], [456, 654]]
@@ -52,8 +52,8 @@ dtype: int64"""
 # 2. 改变索引
 # ================================================================
 print(s.index) # RangeIndex(start=0, stop=3, step=1)
-# s.index = ['a', 'b', 'c']
-# print(s.index) # Index(['a', 'b', 'c'], dtype='object')
+s.index = ['a', 'b', 'c']
+print(s.index) # Index(['a', 'b', 'c'], dtype='object')
 
 s.rename(index={0:'a'}, inplace=True)
 print(s.index) # Index(['a', 1, 2], dtype='object')
