@@ -1,3 +1,12 @@
+"""
+append 多维, 需要指名这多维的 list 是在同一个 index 中的, 否则会建立多个index.
+ex.:
+item = pd.DataFrame(data=[], columns=columns)
+item.loc[0] = value
+print(item)
+                        ft1                       ft2
+0  [[123, 234], [156, 314]]  [[523, 635], [261, 543]]
+"""
 
 # https://github.com/hangsz/pandas-tutorial/blob/master/2.%20Series%E5%92%8CDataFrame%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%A5%E3%80%81%E6%94%B9%E3%80%81%E5%A2%9E%E3%80%81%E5%88%A0.ipynb
 
@@ -30,11 +39,42 @@ dtype: object"""
 # ================================================================
 # 2. DataFrame
 # ================================================================
-# TODO: 怎么 append 多维
-df = pd.DataFrame(data=data)
-print(df)
-value = [[[[123,234],[156,314]]],
-         [[[523,635],[261,543]]]]
+columns = ['ft1', 'ft2']
+df = pd.DataFrame(data=data, columns=columns)
+# print(df)
+value = [[[123,234],[156,314]],
+         [[523,635],[261,543]]]
 item = pd.DataFrame(data=value)
-df2 = df.append(item)
+print(item)
+"""  0           1
+0  [123, 234]  [156, 314]
+1  [523, 635]  [261, 543]"""
+item = pd.DataFrame(data=[], columns=columns)
+item.loc[0] = value
+print(item)
+"""
+                        ft1                       ft2
+0  [[123, 234], [156, 314]]  [[523, 635], [261, 543]]"""
+item.append(value)
+print(item)
+"""
+                        ft1                       ft2
+0  [[123, 234], [156, 314]]  [[523, 635], [261, 543]]"""
+
+df2 = df.append(value, ignore_index=True)
 print(df2)
+"""
+      ft1     ft2           0           1
+0  [1, 2]  [3, 4]         NaN         NaN
+1  [3, 4]  [1, 7]         NaN         NaN
+2  [4, 7]  [2, 9]         NaN         NaN
+3     NaN     NaN  [123, 234]  [156, 314]
+4     NaN     NaN  [523, 635]  [261, 543]"""
+df2 = df.append(item, ignore_index=True)
+print(df2)
+"""
+                        ft1                       ft2
+0                    [1, 2]                    [3, 4]
+1                    [3, 4]                    [1, 7]
+2                    [4, 7]                    [2, 9]
+3  [[123, 234], [156, 314]]  [[523, 635], [261, 543]]"""
