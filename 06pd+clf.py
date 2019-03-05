@@ -54,7 +54,7 @@ df.loc[0, 'ft2'] = value2
 df.loc[1, 'ft1'] = value3
 df.loc[1, 'ft2'] = value4
 
-df.astype(np.float64)
+# df.astype(np.float64)
 
 
 # ====================================================================
@@ -69,7 +69,7 @@ s = Series(data=[])
 s.loc[0] = value1
 s.loc[1] = value2
 
-s.astype(np.float64)
+# s.astype(np.float64)
 
 # ====================================================================
 # 4. 将 features 全部拆开
@@ -109,3 +109,4 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             min_weight_fraction_leaf=0.0, n_estimators=100, n_jobs=1,
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)"""
+
