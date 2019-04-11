@@ -32,4 +32,14 @@ fn_serir    1    2    3
 """
 # </editor-fold>
 
-# 用df添加的时候总是没有办法很好地加index.
+# <editor-fold desc="利用df添加方式1">
+df = pd.DataFrame(columns=columns)
+assert len(df) == 0
+item = pd.DataFrame(data=[[4, 3, 1]], index=['test2'], columns=columns)
+df = df.append(item)
+print(df)
+"""
+      cal1 cal2 cal3
+test2    4    3    1
+"""
+# </editor-fold>
