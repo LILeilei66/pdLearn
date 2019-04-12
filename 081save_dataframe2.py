@@ -1,5 +1,10 @@
 """
 df.to_csv(fp) 会多空行, 当添加 newline 参数, 可以修复此问题.
+
+read_csv 得到的文件有时会多一列:
+  Unnamed: 0  col1  col2  col3
+0       test     1     2   3.0
+其实是read的时候的问题, read_csv 函数增加参数 index_col=0 可以解决此问题.
 """
 import pandas as pd
 
@@ -55,5 +60,22 @@ print(df_read)
 1       test     1     2     3
 2       test     1     2     3
 3       test     1     2     3
+"""
+# </editor-fold>
+
+# <editor-fold desc="read csv with index">
+df_read = pd.read_csv(fp, index_col=0)
+print(df_read)
+"""
+       col1  col2  col3
+test1     1     2     3
+test2     1     2     3
+test3     1     2     3
+test4     1     2     3
+NaN    col1  col2  col3
+test      1     2     3
+test      1     2     3
+test      1     2     3
+test      1     2     3
 """
 # </editor-fold>
