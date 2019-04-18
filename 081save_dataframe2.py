@@ -5,11 +5,13 @@ read_csv 得到的文件有时会多一列:
   Unnamed: 0  col1  col2  col3
 0       test     1     2   3.0
 其实是read的时候的问题, read_csv 函数增加参数 index_col=0 可以解决此问题.
+
+不建议用 Serie 来 to_csv, 因为源码表现为转为 DataFrame 再 save.
 """
 import pandas as pd
 
 fp = 'E:\pdLearn\data\df.csv'
-# <editor-fold desc="append to csv 1">
+# <editor-fold desc="df append to csv 1">
 df_read = pd.read_csv(fp)
 print(df_read)
 header = df_read.columns
@@ -79,3 +81,9 @@ test      1     2     3
 test      1     2     3
 """
 # </editor-fold>
+
+serie = pd.Series(data=['s1','s2','s3'], index=columns,name='test serie')
+with open(fp, 'a') as f:
+    serie.to_csv(f)
+df_read = pd.read_csv(fp, index_col=0)
+print(df_read)
